@@ -6,7 +6,7 @@ import javax.persistence.*;
 Domain Entity, specialization of RegisteredUser.
 A StaffUser represents a member of Staff that has registered with the SUMS application.
 */
-@Entity
+@Entity @Access(AccessType.FIELD)
 public class StaffUser extends RegisteredUser{
  public StaffUser(String ID){
   super(ID);

@@ -10,7 +10,7 @@ A ProjectIdea is associated with a set of ProjectCategories,
 which are simply descriptive string names.
 They are identified by their name.
 */
-@Entity
+@Entity @Access(AccessType.FIELD)
 public class ProjectCategory implements Serializable{
  @Id
  private final String Name;

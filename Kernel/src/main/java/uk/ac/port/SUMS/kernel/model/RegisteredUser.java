@@ -9,7 +9,7 @@ Identified by ???
 A RegisteredUser is one of three mutually exclusive types — 
 StaffUser, StudentUser, or ExternalUser.
 */
-@Entity
+@Entity @Access(AccessType.FIELD)
 abstract public class RegisteredUser implements Serializable{
  //TODO Presumably users are identified by some sort of supplied string ID
  @Id

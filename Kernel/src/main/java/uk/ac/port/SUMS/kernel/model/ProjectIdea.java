@@ -1,6 +1,7 @@
 package uk.ac.port.SUMS.kernel.model;
 import java.util.*;
 import java.io.*;
+import java.time.*;
 import javax.persistence.*;
 
 /**
@@ -11,14 +12,17 @@ A ProjectIdea is identified by its Title.
 Alongside various properties describing the nature of the ProjectIdea,
 it has a Status, defining whether it has been approved as a prospective Project or not.
 */
-@Entity
+@Entity @Access(AccessType.FIELD)
 public class ProjectIdea implements Serializable{
  //TODO Should all ProjectIdea Titles be unique
  @Id
  private String Title;
+ @ManyToOne(fetch=FetchType.EAGER,optional=false)
  private RegisteredUser Owner;
  @Temporal(TemporalType.DATE)
- private Calendar SubmissionDate=null;
+ private ZonedDateTime SubmissionDate=null;
+ //Mapping enum types as string rather than ordinal will provide resilience against the enum being modified, such as new, removed, or reordered values
+ @Enumerated(EnumType.STRING)
  private Statuses Status=Statuses.Provisional;
  //TODO Readonly-ness of collections
  @ManyToMany(fetch=FetchType.EAGER)
@@ -29,8 +33,10 @@ public class ProjectIdea implements Serializable{
  //TODO Will all Students have an associated StudentUser entity
  @ManyToMany(fetch=FetchType.EAGER)
  private Set<StudentUser> IntendedFor=Collections.EMPTY_SET;
- public ProjectIdea(){}
+ @Embedded @OrderBy("when DESC")
+ private List<ProjectIdeaStatusChangeAudit> StatusChanges;
  
+ public ProjectIdea(){}
 
  public String getTitle(){
   return Title;
@@ -52,7 +58,7 @@ public class ProjectIdea implements Serializable{
  /**
  The date (note, not date–time) that this ProjectIdea was originally created/submitted.
  */
- public Calendar getSubmissionDate(){
+ public ZonedDateTime getSubmissionDate(){
   return SubmissionDate;
  }
  public Statuses getStatus(){
@@ -102,6 +108,14 @@ public class ProjectIdea implements Serializable{
   return IntendedFor.isEmpty();
  }
 
+ /**
+ The returned list will be in descending chronological order,
+ with the most recent change first.
+ */
+ public List<ProjectIdeaStatusChangeAudit> getStatusChanges(){
+  return StatusChanges;
+ }
+ 
  public @Override int hashCode(){
   int hash=0;
   hash+=(getTitle()!=null?getTitle().hashCode():0);

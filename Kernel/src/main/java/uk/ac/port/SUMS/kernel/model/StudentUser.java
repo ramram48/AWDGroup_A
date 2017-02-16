@@ -12,6 +12,9 @@ public class StudentUser extends RegisteredUser{
   super(ID);
   super.Organisation=LocalOrganisation;
  }
+ private StudentUser(){
+  super();
+ }
 
  /**
  @author Reciprocal

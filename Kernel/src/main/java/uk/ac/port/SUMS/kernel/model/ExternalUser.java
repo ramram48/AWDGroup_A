@@ -13,6 +13,9 @@ public class ExternalUser extends RegisteredUser{
   super(ID);
   super.Organisation=LocalOrganisation;
  }
+ private ExternalUser(){
+  super();
+ }
 
  /**
  @author Reciprocal

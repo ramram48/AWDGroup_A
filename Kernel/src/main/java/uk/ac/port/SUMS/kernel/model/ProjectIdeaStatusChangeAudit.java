@@ -1,4 +1,5 @@
 package uk.ac.port.SUMS.kernel.model;
+import java.util.*;
 import java.time.*;
 import java.io.*;
 import javax.persistence.*;
@@ -11,16 +12,19 @@ at a particular date–time, by a particular RegisteredUser.
 */
 @Embeddable @Access(AccessType.FIELD)
 public class ProjectIdeaStatusChangeAudit implements Serializable{
- @Temporal(TemporalType.TIMESTAMP) @Column(name="WhenMade")
- private final ZonedDateTime When;
- @Column(name="WhoBy")
- private final RegisteredUser By;
- public ProjectIdeaStatusChangeAudit(ZonedDateTime When,RegisteredUser By){
+ //TODO Use ZonedDateTime
+ @Temporal(TemporalType.TIMESTAMP) @Column(nullable=false,name="WhenMade",updatable=false)
+ private  Calendar When;
+ @JoinColumn(nullable=false,name="WhoBy",updatable=false)
+ private  RegisteredUser By;
+ public ProjectIdeaStatusChangeAudit(Calendar When,RegisteredUser By){
   this.When=When;
   this.By=By;
  }
+ //For JPA
+ private ProjectIdeaStatusChangeAudit(){}
  
- public ZonedDateTime getWhen(){
+ public Calendar getWhen(){
   return When;
  }
  public RegisteredUser getBy(){

@@ -3,6 +3,8 @@ import java.util.*;
 import java.io.*;
 import java.time.*;
 import javax.persistence.*;
+import javax.validation.constraints.*;
+import uk.ac.port.SUMS.kernel.infrastructure.constraints.*;
 
 /**
 @author Reciprocal
@@ -14,83 +16,106 @@ it has a Status, defining whether it has been approved as a prospective Project 
 */
 @Entity @Access(AccessType.FIELD)
 public class ProjectIdea implements Serializable{
- //TODO Should all ProjectIdea Titles be unique
  @Id
  private String Title;
  @ManyToOne(fetch=FetchType.EAGER,optional=false)
  private RegisteredUser Owner;
- @Temporal(TemporalType.DATE)
- private ZonedDateTime SubmissionDate=null;
+ //TODO Use ZonedDateTime
+ @Temporal(TemporalType.DATE) @Column(nullable=false,updatable=false)
+ private Calendar SubmissionDate=null;
  //Mapping enum types as string rather than ordinal will provide resilience against the enum being modified, such as new, removed, or reordered values
- @Enumerated(EnumType.STRING)
+ @Enumerated(EnumType.STRING) @Column(nullable=false)
  private Statuses Status=Statuses.Provisional;
  //TODO Readonly-ness of collections
  @ManyToMany(fetch=FetchType.EAGER)
  private Set<ProjectCategory> Categories=Collections.EMPTY_SET;
+ @Column(nullable=false)
  private String Description="";
+ @Column(nullable=false)
  private String AimsAndObjectives="";
+ @Column(nullable=false)
  private String AcademicQuestion="";
  //TODO Will all Students have an associated StudentUser entity
  @ManyToMany(fetch=FetchType.EAGER)
  private Set<StudentUser> IntendedFor=Collections.EMPTY_SET;
- @Embedded @OrderBy("when DESC")
+ //Use explicit order column to avoid dependency on system clock
+ @ElementCollection(fetch=FetchType.LAZY) /*@OrderBy("when DESC")*/ @OrderColumn(name="ChangeOrder",nullable=false)
  private List<ProjectIdeaStatusChangeAudit> StatusChanges;
  
  public ProjectIdea(){}
 
+ @NotEmpty
  public String getTitle(){
   return Title;
  }
+ /**
+ The Title should only be changed whilst creating a new ProjectIdea;
+ changing existing ProjectIdea entities will have undefined effects.
+ */
  public void setTitle(String Title){
   this.Title=Title;
  }
+ 
  /**
  Usually the Owner of a ProjectIdea is the RegisteredUser that originally created/submitted it.
  However, an Administrator can re-assign ProjectIdea entities to new Owners,
  which is normally done when a RegisteredUser leaves.
  */
+ @NotNull
  public RegisteredUser getOwner(){
   return Owner;
  }
  public void setOwner(RegisteredUser Owner){
   this.Owner=Owner;
  }
+ 
  /**
  The date (note, not date–time) that this ProjectIdea was originally created/submitted.
  */
- public ZonedDateTime getSubmissionDate(){
+ public Calendar getSubmissionDate(){
   return SubmissionDate;
  }
+ 
+ @NotNull
  public Statuses getStatus(){
   return Status;
  }
  public void setStatus(Statuses Status){
   this.Status=Status;
  }
+ 
  public Set<ProjectCategory> getCategories(){
   return Categories;
  }
  public void setCategories(Set<ProjectCategory> Categories){
   this.Categories=Categories;
  }
+ 
+ @NotEmpty
  public String getDescription(){
   return Description;
  }
  public void setDescription(String Description){
+  if(Description==null){Description="";}
   this.Description=Description;
  }
+ 
+ @NotEmpty
  public String getAimsAndObjectives(){
   return AimsAndObjectives;
  }
  public void setAimsAndObjectives(String AimsAndObjectives){
   this.AimsAndObjectives=AimsAndObjectives;
  }
+ 
+ @NotEmpty
  public String getAcademicQuestion(){
   return AcademicQuestion;
  }
  public void setAcademicQuestion(String AcademicQuestion){
   this.AcademicQuestion=AcademicQuestion;
  }
+ 
  /**
  The set of Students that this ProjectIdea is aimed at;
  usually this is empty, indicating it is open to be allocated to any Student.
@@ -108,12 +133,19 @@ public class ProjectIdea implements Serializable{
   return IntendedFor.isEmpty();
  }
 
+ //TODO Reverse order
  /**
  The returned list will be in descending chronological order,
  with the most recent change first.
  */
  public List<ProjectIdeaStatusChangeAudit> getStatusChanges(){
   return StatusChanges;
+ }
+ 
+ @PrePersist
+ private void onCreating(){
+  if(this.SubmissionDate!=null){return;}
+  this.SubmissionDate=Calendar.getInstance(TimeZone.getTimeZone(ZoneId.of("Z")),Locale.ROOT);
  }
  
  public @Override int hashCode(){

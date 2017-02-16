@@ -13,10 +13,12 @@ They are identified by their name.
 @Entity @Access(AccessType.FIELD)
 public class ProjectCategory implements Serializable{
  @Id
- private final String Name;
+ private String Name;
  public ProjectCategory(String Name){
   this.Name=Name;
  }
+ //For JPA
+ private ProjectCategory(){}
 
  public String getName(){
   return Name;

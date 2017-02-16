@@ -13,11 +13,14 @@ StaffUser, StudentUser, or ExternalUser.
 abstract public class RegisteredUser implements Serializable{
  //TODO Presumably users are identified by some sort of supplied string ID
  @Id
- private final String ID;
+ private String ID;
  protected String Organisation;
  public RegisteredUser(String ID){
   this.ID=ID;
  }
+ //For JPA
+ protected RegisteredUser(){}
+ 
  public String getID(){
   return ID;
  }

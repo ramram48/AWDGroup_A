@@ -1,0 +1,2 @@
+INSERT INTO REGISTEREDUSER(ID, DTYPE, ORGANISATION) VALUES('W', 'StaffUser', 'University of Portsmouth')
+INSERT INTO REGISTEREDUSER(ID, DTYPE, ORGANISATION) VALUES('CR', 'StudentUser', 'University of Portsmouth')

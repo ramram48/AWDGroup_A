@@ -142,6 +142,25 @@ public class ProjectIdea implements Serializable{
   return StatusChanges;
  }
  
+ /**
+ @return true if the supplied user may view this ProjectIdea, otherwise false
+ */
+ public boolean canView(RegisteredUser User){
+  return User.equals(this.getOwner()) || User.isStaff() || Statuses.Approved.equals(this.getStatus());
+ }
+ /**
+ @return true if the supplied user may amend this ProjectIdea, otherwise false
+ */
+ public boolean canEdit(RegisteredUser User){
+  return User.equals(this.getOwner()) || User.isCoordinator();
+ }
+ /**
+ @return true if the supplied user may view the Status change history of this ProjectIdea, otherwise false
+ */
+ public boolean canViewStatusChanges(RegisteredUser User){
+  return User.equals(this.getOwner()) || User.isStaff();
+ }
+ 
  @PrePersist
  private void onCreating(){
   if(this.SubmissionDate!=null){return;}

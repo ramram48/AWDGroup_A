@@ -20,13 +20,16 @@ abstract public class RegisteredUser implements Serializable{
  }
  //For JPA
  protected RegisteredUser(){}
+
+ 
+ //TODO
  
  public String getID(){
   return ID;
  }
-
- 
- //TODO
+ public String getFullName(){
+  return ID;
+ }
  
  
  public String getOrganisation(){

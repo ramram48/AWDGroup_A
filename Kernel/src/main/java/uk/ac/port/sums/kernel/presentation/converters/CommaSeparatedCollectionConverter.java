@@ -1,4 +1,4 @@
-package uk.ac.port.sums.kernel.presentation.converters;
+package uk.ac.port.SUMS.kernel.presentation.converters;
 import java.text.*;
 import java.util.*;
 import javax.faces.component.*;

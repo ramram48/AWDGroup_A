@@ -1,4 +1,4 @@
-package uk.ac.port.sums.kernel.presentation;
+package uk.ac.port.SUMS.kernel.presentation;
 import uk.ac.port.SUMS.kernel.model.*;
 
 /**

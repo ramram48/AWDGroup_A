@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html
+ xmlns="http://www.w3.org/1999/xhtml"
+ xmlns:h="http://xmlns.jcp.org/jsf/html"
+ xmlns:f="http://xmlns.jcp.org/jsf/core"
+ xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+>
+ <f:metadata>
+  <f:viewParam name="Title" value="#{I.title}"/>
+  <f:viewAction action="#{I.LoadModel}"
+ </f:metadata>
+ <h:head>
+  <title>SUMS — View Project Idea</title>
+  <meta name="language" content="en-GB"/>
+  <style type="text/css">
+   .FormattedText{white-space:pre-wrap;}
+  </style>
+ </h:head>
+ <h:body>
+  
+  <h:messages globalOnly="true" showSummary="true" showDetail="true"/>
+  <h:panelGroup layout="block" rendered="#{I.success}">
+   
+   <h1><h:outputFormat value="Project Idea: {0}">
+     <f:param value="#{I.model.title}"/>
+   </h:outputFormat></h1>
+   
+   <div>
+    <h:link
+     rendered="#{I.canNavigateToAmendIdea}"
+     outcome="UpdateProjectIdea.xhtml" includeViewParams="true"
+     value="Amend Idea"
+    />
+    <h:link
+     rendered="#{I.canNavigateToStatusChanges}"
+     outcome="ProjectIdeaStatusChanges.xhtml" includeViewParams="true"
+     value="View Status Changes"
+    />
+   </div>
+   
+   <h:panelGrid columns="2">
+    <h:outputLabel value="Categories:" for="Categories"/>
+    <h:outputText id="Categories" value="#{I.model.categories}">
+     <f:converter converterId="CommaSeparatedCollection"/>
+    </h:outputText>
+    
+    <h:outputLabel value="Owner:" for="Owner"/>
+    <h:outputFormat id="Owner" value="{0} ({1})">
+     <f:param value="#{I.model.owner.fullName}"/>
+     <f:param value="#{I.model.owner.ID}"/>
+    </h:outputFormat>
+    
+    <h:outputLabel value="Owner Organisation:" for="OwnerOrganisation"/>
+    <h:outputFormat id="OwnerOrganisation" value="{0}">
+     <f:param value="#{I.model.owner.organisation}"/>
+    </h:outputFormat>
+    
+    <h:outputLabel value="Intended for:" for="IntendedFor"/>
+    <c:if test="#{I.model.intendedForEveryone}">
+     <h:outputText id="IntendedFor" value="Everyone"/>
+    </c:if>
+    <c:if test="#{!I.model.intendedForEveryone}">
+     <h:dataTable id="IntendedFor" value="#{I.model.intendedFor}" var="For">
+      <h:column>
+       <h:outputFormat value="{0} ({1})">
+        <f:param value="#{For.fullName}"/>
+        <f:param value="#{For.ID}"/>
+       </h:outputFormat>
+      </h:column>
+     </h:dataTable>
+    </c:if>
+    
+    <h:outputLabel value="Submission Date:" for="SubmissionDate"/>
+    <h:outputFormat id="SubmissionDate" value="{0,date,medium}">
+     <f:param value="#{I.model.submissionDate}"/>
+    </h:outputFormat>
+    
+    <h:outputLabel value="Status:" for="Status"/>
+    <h:outputFormat id="Status" value="{0}">
+     <f:param value="#{I.model.status}"/>
+    </h:outputFormat>
+   </h:panelGrid>
+   
+   <h2>Academic Question</h2>
+   <p class="FormattedText"><h:outputText value="#{I.model.academicQuestion}"/></p>
+   
+   <h2>Description</h2>
+   <p class="FormattedText"><h:outputText value="#{I.model.description}"/></p>
+   
+   <h2>Aims &amp; Objectives</h2>
+   <p class="FormattedText"><h:outputText value="#{I.model.aimsAndObjectives}"/></p>
+   
+  </h:panelGroup>
+  
+ </h:body>
+</html>

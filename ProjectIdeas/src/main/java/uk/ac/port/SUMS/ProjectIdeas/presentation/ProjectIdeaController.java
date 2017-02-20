@@ -3,7 +3,7 @@ import javax.ejb.*;
 import javax.inject.*;
 import javax.enterprise.context.*;
 import uk.ac.port.SUMS.kernel.infrastructure.*;
-import uk.ac.port.sums.kernel.presentation.*;
+import uk.ac.port.SUMS.kernel.presentation.*;
 import uk.ac.port.SUMS.kernel.model.*;
 import uk.ac.port.SUMS.kernel.persistence.*;
 

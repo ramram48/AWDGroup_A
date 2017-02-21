@@ -2195,10 +2195,12 @@ Transfer Ownership To : Take Idea Ownership
 <XPD:REF name="ContainerState">wOhEctw80E+S+Q/CCcWBjQAA</XPD:REF>
 <XPD:ATTR name="#Views" type="integer">1</XPD:ATTR>
 <XPD:REF name="Views[0]">qBbvP6w9KUSgw3AFidQscwAA</XPD:REF>
-<XPD:ATTR name="#Outgoings" type="integer">1</XPD:ATTR>
+<XPD:ATTR name="#Outgoings" type="integer">2</XPD:ATTR>
 <XPD:REF name="Outgoings[0]">Q6Qy8/Mt/UivxJHbeRon0gAA</XPD:REF>
-<XPD:ATTR name="#Incomings" type="integer">1</XPD:ATTR>
+<XPD:REF name="Outgoings[1]">+E5KuYeU1065n/0saBBU7wAA</XPD:REF>
+<XPD:ATTR name="#Incomings" type="integer">2</XPD:ATTR>
 <XPD:REF name="Incomings[0]">3M0qKp3wb06WQkHAsjyNcQAA</XPD:REF>
+<XPD:REF name="Incomings[1]">+E5KuYeU1065n/0saBBU7wAA</XPD:REF>
 </XPD:OBJ>
 </XPD:OBJ>
 <XPD:ATTR name="#OwnedDiagrams" type="integer">1</XPD:ATTR>
@@ -2207,7 +2209,7 @@ Transfer Ownership To : Take Idea Ownership
 <XPD:REF name="DiagramOwner">LJ1n0Iy86UKIyxYXZy8ykQAA</XPD:REF>
 <XPD:OBJ name="DiagramView" type="UMLActivityDiagramView" guid="ZVUCLOttk0yEvTtmGh3BMQAA">
 <XPD:REF name="Diagram">5/pBwvM7dkGQm2ZFukwhZAAA</XPD:REF>
-<XPD:ATTR name="#OwnedViews" type="integer">17</XPD:ATTR>
+<XPD:ATTR name="#OwnedViews" type="integer">18</XPD:ATTR>
 <XPD:OBJ name="OwnedViews[0]" type="UMLPseudostateView" guid="WkHi3P0Pgka1lhwlXAsRgAAA">
 <XPD:ATTR name="FontFace" type="string">Lucida Console</XPD:ATTR>
 <XPD:ATTR name="Left" type="integer">99</XPD:ATTR>
@@ -2501,7 +2503,7 @@ Transfer Ownership To : Take Idea Ownership
 <XPD:ATTR name="FontFace" type="string">Times New Roman</XPD:ATTR>
 <XPD:ATTR name="FontSize" type="integer">15</XPD:ATTR>
 <XPD:ATTR name="FontStyle" type="integer">4</XPD:ATTR>
-<XPD:ATTR name="Left" type="integer">240</XPD:ATTR>
+<XPD:ATTR name="Left" type="integer">276</XPD:ATTR>
 <XPD:ATTR name="Top" type="integer">300</XPD:ATTR>
 <XPD:ATTR name="Width" type="integer">193</XPD:ATTR>
 <XPD:ATTR name="Height" type="integer">32</XPD:ATTR>
@@ -2511,7 +2513,7 @@ Transfer Ownership To : Take Idea Ownership
 <XPD:OBJ name="OwnedViews[16]" type="UMLTextView" guid="Sj5w4Ov+N0qYY4WSWD1bSAAA">
 <XPD:ATTR name="FontFace" type="string">Times New Roman</XPD:ATTR>
 <XPD:ATTR name="FontSize" type="integer">10</XPD:ATTR>
-<XPD:ATTR name="Left" type="integer">224</XPD:ATTR>
+<XPD:ATTR name="Left" type="integer">260</XPD:ATTR>
 <XPD:ATTR name="Top" type="integer">332</XPD:ATTR>
 <XPD:ATTR name="Width" type="integer">208</XPD:ATTR>
 <XPD:ATTR name="Height" type="integer">59</XPD:ATTR>
@@ -2520,9 +2522,35 @@ Search Approved only : Search Ideas
 Search Own also : Search Ideas
 </XPD:ATTR>
 </XPD:OBJ>
+<XPD:OBJ name="OwnedViews[17]" type="UMLTransitionView" guid="PVF04bqYlEuSXhlG/A5ilQAA">
+<XPD:ATTR name="FontFace" type="string">Lucida Console</XPD:ATTR>
+<XPD:ATTR name="LineStyle" type="LineStyleKind">lsRectilinear</XPD:ATTR>
+<XPD:ATTR name="Points" type="Points">195,400;208,400;208,356;152,356;152,376</XPD:ATTR>
+<XPD:REF name="Model">+E5KuYeU1065n/0saBBU7wAA</XPD:REF>
+<XPD:REF name="Head">qBbvP6w9KUSgw3AFidQscwAA</XPD:REF>
+<XPD:REF name="Tail">qBbvP6w9KUSgw3AFidQscwAA</XPD:REF>
+<XPD:OBJ name="NameLabel" type="EdgeLabelView" guid="8+4mYD7J9kGYUhq1yzTI7QAA">
+<XPD:ATTR name="Alpha" type="real">2.47754604819319</XPD:ATTR>
+<XPD:ATTR name="Distance" type="real">29.2061637330205</XPD:ATTR>
+<XPD:ATTR name="Text" type="string">paging</XPD:ATTR>
+<XPD:REF name="Model">+E5KuYeU1065n/0saBBU7wAA</XPD:REF>
+</XPD:OBJ>
+<XPD:OBJ name="StereotypeLabel" type="EdgeLabelView" guid="MjcFzRUV80i6bbtyGC8uwgAA">
+<XPD:ATTR name="Visible" type="boolean">False</XPD:ATTR>
+<XPD:ATTR name="Alpha" type="real">1.5707963267949</XPD:ATTR>
+<XPD:ATTR name="Distance" type="real">30</XPD:ATTR>
+<XPD:REF name="Model">+E5KuYeU1065n/0saBBU7wAA</XPD:REF>
+</XPD:OBJ>
+<XPD:OBJ name="PropertyLabel" type="EdgeLabelView" guid="KKqoF9Ndx0GmpoAJhL2pwgAA">
+<XPD:ATTR name="Visible" type="boolean">False</XPD:ATTR>
+<XPD:ATTR name="Alpha" type="real">-1.5707963267949</XPD:ATTR>
+<XPD:ATTR name="Distance" type="real">15</XPD:ATTR>
+<XPD:REF name="Model">+E5KuYeU1065n/0saBBU7wAA</XPD:REF>
 </XPD:OBJ>
 </XPD:OBJ>
-<XPD:ATTR name="#Transitions" type="integer">9</XPD:ATTR>
+</XPD:OBJ>
+</XPD:OBJ>
+<XPD:ATTR name="#Transitions" type="integer">10</XPD:ATTR>
 <XPD:OBJ name="Transitions[0]" type="UMLTransition" guid="QGHFKVrkzkmg1Athvy9BgQAA">
 <XPD:REF name="StateMachine">LJ1n0Iy86UKIyxYXZy8ykQAA</XPD:REF>
 <XPD:REF name="Source">DX8U9x0CKEaicGNKGq6HzAAA</XPD:REF>
@@ -2610,6 +2638,17 @@ Search Own also : Search Ideas
 <XPD:REF name="Views[1]">ZDLSjHX/kUWMU69siqUOdQAA</XPD:REF>
 <XPD:REF name="Views[2]">ijV79gP5MUq80TxFFSsHnQAA</XPD:REF>
 <XPD:REF name="Views[3]">wGGSemRZoka5Jbp6a0xRBwAA</XPD:REF>
+</XPD:OBJ>
+<XPD:OBJ name="Transitions[9]" type="UMLTransition" guid="+E5KuYeU1065n/0saBBU7wAA">
+<XPD:ATTR name="Name" type="string">paging</XPD:ATTR>
+<XPD:REF name="StateMachine">LJ1n0Iy86UKIyxYXZy8ykQAA</XPD:REF>
+<XPD:REF name="Source">4XZ4cwF/HE+c0Etv8gG/IQAA</XPD:REF>
+<XPD:REF name="Target">4XZ4cwF/HE+c0Etv8gG/IQAA</XPD:REF>
+<XPD:ATTR name="#Views" type="integer">4</XPD:ATTR>
+<XPD:REF name="Views[0]">PVF04bqYlEuSXhlG/A5ilQAA</XPD:REF>
+<XPD:REF name="Views[1]">8+4mYD7J9kGYUhq1yzTI7QAA</XPD:REF>
+<XPD:REF name="Views[2]">MjcFzRUV80i6bbtyGC8uwgAA</XPD:REF>
+<XPD:REF name="Views[3]">KKqoF9Ndx0GmpoAJhL2pwgAA</XPD:REF>
 </XPD:OBJ>
 </XPD:OBJ>
 </XPD:OBJ>

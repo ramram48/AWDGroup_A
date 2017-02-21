@@ -1279,7 +1279,7 @@ Change Status
 </XPD:OBJ>
 <XPD:OBJ name="OwnedViews[2]" type="UMLFinalStateView" guid="QIUXpgDd+EGctzBInSo0GAAA">
 <XPD:ATTR name="FontFace" type="string">Lucida Console</XPD:ATTR>
-<XPD:ATTR name="Left" type="integer">784</XPD:ATTR>
+<XPD:ATTR name="Left" type="integer">928</XPD:ATTR>
 <XPD:ATTR name="Top" type="integer">53</XPD:ATTR>
 <XPD:ATTR name="Width" type="integer">26</XPD:ATTR>
 <XPD:ATTR name="Height" type="integer">26</XPD:ATTR>
@@ -1312,14 +1312,14 @@ Change Status
 </XPD:OBJ>
 <XPD:OBJ name="OwnedViews[4]" type="UMLTransitionView" guid="LUMRZOHxR0esdJSkZf73ZQAA">
 <XPD:ATTR name="FontFace" type="string">Lucida Console</XPD:ATTR>
-<XPD:ATTR name="Points" type="Points">418,65;784,65</XPD:ATTR>
+<XPD:ATTR name="Points" type="Points">418,65;928,65</XPD:ATTR>
 <XPD:REF name="Model">IQoQpnGXl06qHiZXqp3WDQAA</XPD:REF>
 <XPD:REF name="Head">QIUXpgDd+EGctzBInSo0GAAA</XPD:REF>
 <XPD:REF name="Tail">Y9HfoarN70m5Y9wB6+F5lgAA</XPD:REF>
 <XPD:OBJ name="NameLabel" type="EdgeLabelView" guid="f3rCTUUhnkqIuU6trwVqegAA">
-<XPD:ATTR name="Alpha" type="real">1.5707963267949</XPD:ATTR>
-<XPD:ATTR name="Distance" type="real">15</XPD:ATTR>
-<XPD:ATTR name="Text" type="string">[IdeaToView.Owner!=CurrentUser &amp;&amp; CurrentUser.isStaffUser] / Error</XPD:ATTR>
+<XPD:ATTR name="Alpha" type="real">-4.36361812613093</XPD:ATTR>
+<XPD:ATTR name="Distance" type="real">11.7046999107196</XPD:ATTR>
+<XPD:ATTR name="Text" type="string">[IdeaToView.Owner!=CurrentUser &amp;&amp; !CurrentUser.isStaffUser &amp;&amp; IdeaToView.Status!=Approved] / Error</XPD:ATTR>
 <XPD:REF name="Model">IQoQpnGXl06qHiZXqp3WDQAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="StereotypeLabel" type="EdgeLabelView" guid="bVVYNAl0X0OD+K4kZV98eAAA">
@@ -1704,7 +1704,7 @@ Transfer Ownership To : Take Idea Ownership
 <XPD:REF name="Views[3]">FX9xFuJw90mFz7jjPDf7HAAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="Transitions[1]" type="UMLTransition" guid="IQoQpnGXl06qHiZXqp3WDQAA">
-<XPD:ATTR name="Name" type="string">[IdeaToView.Owner!=CurrentUser &amp;&amp; CurrentUser.isStaffUser] / Error</XPD:ATTR>
+<XPD:ATTR name="Name" type="string">[IdeaToView.Owner!=CurrentUser &amp;&amp; !CurrentUser.isStaffUser &amp;&amp; IdeaToView.Status!=Approved] / Error</XPD:ATTR>
 <XPD:REF name="StateMachine">/uI4wg4HKkC17S27yGdspwAA</XPD:REF>
 <XPD:REF name="Source">3PzaHCwVQUyyJjl1/RTboQAA</XPD:REF>
 <XPD:REF name="Target">qLuU4FR5WkWu0QrpnR2v0QAA</XPD:REF>

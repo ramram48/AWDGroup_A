@@ -1,7 +1,10 @@
 package uk.ac.port.SUMS.kernel.model;
 import java.util.*;
 import java.io.*;
+import java.text.*;
 import java.time.*;
+import java.util.logging.*;
+import javax.inject.*;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import uk.ac.port.SUMS.kernel.infrastructure.constraints.*;
@@ -41,6 +44,8 @@ public class ProjectIdea implements Serializable{
  //Use explicit order column to avoid dependency on system clock
  @ElementCollection(fetch=FetchType.LAZY) /*@OrderBy("when DESC")*/ @OrderColumn(name="ChangeOrder",nullable=false)
  private List<ProjectIdeaStatusChangeAudit> StatusChanges;
+ @Transient
+ private Logger Log=Logger.getLogger(this.getClass().getPackage().getName());
  
  public ProjectIdea(){}
 
@@ -53,6 +58,7 @@ public class ProjectIdea implements Serializable{
  changing existing ProjectIdea entities will have undefined effects.
  */
  public void setTitle(String Title){
+  Log.info(MessageFormat.format("Changing ProjectIdea Title from {0} to {1}",this.Title,Title));
   this.Title=Title;
  }
  
@@ -163,7 +169,11 @@ public class ProjectIdea implements Serializable{
  
  @PrePersist
  private void onCreating(){
-  if(this.SubmissionDate!=null){return;}
+  Log.info(MessageFormat.format("New ProjectIdea \"{0}\" being created; setting SubmissionDate",getTitle()));
+  if(this.SubmissionDate!=null){
+   Log.warning(MessageFormat.format("Newly created ProjectIdea \"{1}\" already has a SubmissionDate of {0}",this.SubmissionDate,getTitle()));
+   return;
+  }
   this.SubmissionDate=Calendar.getInstance(TimeZone.getTimeZone(ZoneId.of("Z")),Locale.ROOT);
  }
  

@@ -34,7 +34,7 @@ public class ProjectIdea implements Serializable{
  @Column(nullable=false)
  private String AimsAndObjectives="";
  @Column(nullable=false)//edited by ramazan
- private String AcademicQuestion="";
+ private String AcademicQuestion=""; // edited by pat
  //TODO Will all Students have an associated StudentUser entity
  @ManyToMany(fetch=FetchType.EAGER)
  private Set<StudentUser> IntendedFor=Collections.EMPTY_SET;

@@ -11,7 +11,7 @@ delimiting entries with a comma-space by default.
 Conversion is one way only. Null values are skipped.
 @author Reciprocal
 */
-@FacesConverter(value="CommaSeparatedCollection",forClass=Collection.class)
+@FacesConverter(value="CommaSeparatedCollection")
 public class CommaSeparatedCollectionConverter implements Converter{
  private String Delimiter=DefaultDelimiter;
  public CommaSeparatedCollectionConverter(){}

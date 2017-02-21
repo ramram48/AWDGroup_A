@@ -152,19 +152,22 @@ public class ProjectIdea implements Serializable{
  @return true if the supplied user may view this ProjectIdea, otherwise false
  */
  public boolean canView(RegisteredUser User){
-  return User.equals(this.getOwner()) || User.isStaff() || Statuses.Approved.equals(this.getStatus());
+  return User.equals(this.getOwner()) || User.isStaff() || Statuses.Approved.equals(this.getStatus())
+  || User.isAdministrator();
  }
  /**
  @return true if the supplied user may amend this ProjectIdea, otherwise false
  */
  public boolean canEdit(RegisteredUser User){
-  return User.equals(this.getOwner()) || User.isCoordinator();
+  return User.equals(this.getOwner()) || User.isCoordinator()
+  || User.isAdministrator();
  }
  /**
  @return true if the supplied user may view the Status change history of this ProjectIdea, otherwise false
  */
  public boolean canViewStatusChanges(RegisteredUser User){
-  return User.equals(this.getOwner()) || User.isStaff();
+  return User.equals(this.getOwner()) || User.isStaff()
+  || User.isAdministrator();
  }
  
  @PrePersist

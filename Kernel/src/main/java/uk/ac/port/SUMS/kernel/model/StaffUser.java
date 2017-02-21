@@ -8,6 +8,7 @@ A StaffUser represents a member of Staff that has registered with the SUMS appli
 */
 @Entity @Access(AccessType.FIELD)
 public class StaffUser extends RegisteredUser{
+ private boolean administrator;
  public StaffUser(String ID){
   super(ID);
   super.Organisation=LocalOrganisation;
@@ -28,6 +29,12 @@ public class StaffUser extends RegisteredUser{
  }
  public @Override boolean isAdministrator(){
   //TODO
-  return super.isAdministrator();
+  return administrator;
+ }
+ 
+ static public StaffUser Administrator(String ID){
+  StaffUser Result=new StaffUser(ID);
+  Result.administrator=true;
+  return Result;
  }
 }

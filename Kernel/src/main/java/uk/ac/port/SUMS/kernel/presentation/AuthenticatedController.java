@@ -11,7 +11,7 @@ abstract public class AuthenticatedController{
   
   //TODO
   
-  return new StaffUser("Q");
+  return StaffUser.Administrator("Q");
   
  }
 }

@@ -7,8 +7,8 @@
  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
 >
  <f:metadata>
-  <f:viewParam name="Title" value="#{I.title}"/>
-  <f:viewAction action="#{I.LoadModel}"
+  <f:viewParam name="title" value="#{I.title}"/>
+  <f:viewAction action="#{I.LoadModel}"/>
  </f:metadata>
  <h:head>
   <title>SUMS — View Project Idea</title>
@@ -73,7 +73,8 @@
     
     <h:outputLabel value="Submission Date:" for="SubmissionDate"/>
     <h:outputFormat id="SubmissionDate" value="{0,date,medium}">
-     <f:param value="#{I.model.submissionDate}"/>
+     <!--Date will be interpreted according to the host system's timezone-->
+     <f:param value="#{I.model.submissionDate.time}"/>
     </h:outputFormat>
     
     <h:outputLabel value="Status:" for="Status"/>

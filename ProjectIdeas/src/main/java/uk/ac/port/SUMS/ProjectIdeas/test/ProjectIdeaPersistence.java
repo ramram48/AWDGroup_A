@@ -1,7 +1,5 @@
 package uk.ac.port.SUMS.ProjectIdeas.test;
-import javax.faces.view.*;
 import javax.inject.*;
-import javax.annotation.*;
 import javax.enterprise.context.*;
 import uk.ac.port.SUMS.kernel.model.*;
 import uk.ac.port.SUMS.kernel.persistence.*;
@@ -18,14 +16,18 @@ public class ProjectIdeaPersistence{
  public ProjectIdeaPersistence(){}
  
  public String ExecuteCreate(){
-  RegisteredUser Owner=DAOUser.Read("W");
-  ProjectIdea Model=new ProjectIdea();
-  Model.setTitle("The Title");
-  Model.setOwner(Owner);
-  Model.setDescription("The Description");
-  Model.setAcademicQuestion("The Question");
-  Model.setAimsAndObjectives("The Objectives");
-  DAO.Create(Model);
-  return "";
+  try{
+   RegisteredUser Owner=DAOUser.Read("W");
+   ProjectIdea Model=new ProjectIdea();
+   Model.setTitle("The Title");
+   Model.setOwner(Owner);
+   Model.setDescription("The Description");
+   Model.setAcademicQuestion("The Question");
+   Model.setAimsAndObjectives("The Objectives");
+   DAO.Create(Model);
+   return "";
+  }catch(Exception ex){
+   throw new RuntimeException(ex);
+  }
  }
 }

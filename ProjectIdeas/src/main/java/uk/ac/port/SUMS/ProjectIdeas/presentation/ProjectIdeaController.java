@@ -4,8 +4,9 @@ import javax.inject.*;
 import javax.enterprise.context.*;
 import uk.ac.port.SUMS.kernel.infrastructure.*;
 import uk.ac.port.SUMS.kernel.presentation.*;
+import uk.ac.port.SUMS.kernel.persistence.exceptions.*;
 import uk.ac.port.SUMS.kernel.model.*;
-import uk.ac.port.SUMS.kernel.persistence.*;
+import uk.ac.port.SUMS.ProjectIdeas.application.*;
 
 @Named(value="I")
 @RequestScoped
@@ -13,7 +14,7 @@ public class ProjectIdeaController extends AuthenticatedController{
  private String Title=null;
  private ProjectIdea Model=null;
  @EJB
- private ProjectIdeaDAO DAO;
+ private ViewProjectIdea Application;
  private final StringSanitizer StringSanitizerService=new StringSanitizer();
  public ProjectIdeaController(){}
  
@@ -41,10 +42,12 @@ public class ProjectIdeaController extends AuthenticatedController{
   if(this.Title==null||this.Title.isEmpty()){
    //TODO Redirect
   }
-  //TODO Not found and any other error handling
-  ProjectIdea Model=DAO.Read(this.Title);
-  if(!Model.canView(getCurrentUser())){
+  ProjectIdea Model;
+  try{
+   Model=Application.Execute(Title,getCurrentUser());
+  }catch(NoEntityFoundException Error){
    //TODO Error handling
+   return;
   }
   this.Model=Model;
  }

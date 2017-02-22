@@ -480,7 +480,7 @@
 </XPD:OBJ>
 <XPD:OBJ name="OwnedViews[17]" type="UMLTransitionView" guid="9iqTTRq3WEWRuvn2GglzRAAA">
 <XPD:ATTR name="FontFace" type="string">Lucida Console</XPD:ATTR>
-<XPD:ATTR name="Points" type="Points">500,307;500,336;556,336;556,239</XPD:ATTR>
+<XPD:ATTR name="Points" type="Points">500,307;500,324;556,324;556,239</XPD:ATTR>
 <XPD:REF name="Model">FMCmreYav0aTKUlKpW3F5wAA</XPD:REF>
 <XPD:REF name="Head">zgVbGQ5bVUSjI2sUK9Xz8AAA</XPD:REF>
 <XPD:REF name="Tail">nBnevvB6fU2nHc6ESrI7kQAA</XPD:REF>

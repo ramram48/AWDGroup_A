@@ -44,6 +44,7 @@ public class ProjectIdeaController extends AuthenticatedController{
  
  public void LoadModel(){
   if(this.Title==null||this.Title.isEmpty()){
+   //TODO Test
    super.Redirect("ProjectIdeas.xhtml");
    return;
   }

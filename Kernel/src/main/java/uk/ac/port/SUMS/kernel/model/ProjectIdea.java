@@ -10,7 +10,7 @@ import javax.validation.constraints.*;
 import uk.ac.port.SUMS.kernel.infrastructure.constraints.*;
 
 /**
-Domain Entity.
+Model layer Entity.
 A ProjectIdea represents an idea a RegisteredUser has had for a Project.
 A ProjectIdea is identified by its Title.
 Alongside various properties describing the nature of the ProjectIdea,

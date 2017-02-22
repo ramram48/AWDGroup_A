@@ -2,12 +2,13 @@ package uk.ac.port.SUMS.kernel.model;
 import java.io.*;
 import javax.persistence.*;
 
-//TODO Who controls the lifetime of ProjectCategory entities
 /**
-Domain Entity.
-A ProjectIdea is associated with a set of ProjectCategories,
+Model layer Entity.
+A ProjectIdea is associated with a set of ProjectCategory entities,
 which are simply descriptive string names.
 They are identified by their name.
+Administrator users manage the collection of available ProjectCategory entities
+that a ProjectIdea can be associated with.
 @author Reciprocal
 */
 @Entity @Access(AccessType.FIELD)

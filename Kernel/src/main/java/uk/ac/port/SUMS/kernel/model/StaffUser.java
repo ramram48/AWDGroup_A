@@ -3,8 +3,8 @@ import java.io.*;
 import javax.persistence.*;
 
 /**
-Domain Entity, specialization of RegisteredUser.
-A StaffUser represents a member of Staff that has registered with the SUMS application.
+Model layer Entity, specialization of RegisteredUser.
+Placeholder for testing; see RegisteredUser
 */
 @Entity @Access(AccessType.FIELD)
 public class StaffUser extends RegisteredUser{
@@ -17,9 +17,6 @@ public class StaffUser extends RegisteredUser{
   super();
  }
 
- /**
- @author Reciprocal
- */
  protected @Override Types getType(){
   return Types.Staff;
  }

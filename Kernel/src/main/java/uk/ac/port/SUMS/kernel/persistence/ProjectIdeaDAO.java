@@ -5,6 +5,9 @@ import uk.ac.port.SUMS.kernel.persistence.exceptions.*;
 import uk.ac.port.SUMS.kernel.model.*;
 
 /**
+DAO/Facade class for reading and writing ProjectIdea entities,
+along with related value objects within the ProjectIdea aggregate root,
+from and to the underlying data store.
 @author Reciprocal
 */
 @Stateless

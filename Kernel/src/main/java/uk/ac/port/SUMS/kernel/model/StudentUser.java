@@ -3,8 +3,8 @@ import java.io.*;
 import javax.persistence.*;
 
 /**
-Domain Entity, specialization of RegisteredUser.
-A StudentUser represents a Student that has registered with the SUMS application.
+Model layer Entity, specialization of RegisteredUser.
+Placeholder for testing; see RegisteredUser
 */
 @Entity @Access(AccessType.FIELD)
 public class StudentUser extends RegisteredUser{
@@ -16,9 +16,6 @@ public class StudentUser extends RegisteredUser{
   super();
  }
 
- /**
- @author Reciprocal
- */
  protected @Override Types getType(){
   return Types.Student;
  }

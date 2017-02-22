@@ -5,7 +5,7 @@ import javax.persistence.criteria.*;
 import uk.ac.port.SUMS.kernel.persistence.exceptions.*;
 
 /**
-Persistence layer convenience base class for DAO classes,
+Persistence layer convenience base class for DAO/Facade classes,
 providing template implementations for the basic four data operations.
 @param <T> Entity class that derived DAO classes will operate on
 @author Reciprocal
@@ -49,9 +49,9 @@ abstract class AbstractFacade<T>{
  }
  /*
  protected Collection<T> ReadRange(int[] range){
-  javax.persistence.criteria.CriteriaQuery cq=getEntityManager().getCriteriaBuilder().createQuery();
+  CriteriaQuery cq=getEntityManager().getCriteriaBuilder().createQuery();
   cq.select(cq.from(entityClass));
-  javax.persistence.Query q=getEntityManager().createQuery(cq);
+  Query q=getEntityManager().createQuery(cq);
   q.setMaxResults(range[1]-range[0]+1);
   q.setFirstResult(range[0]);
   return q.getResultList();

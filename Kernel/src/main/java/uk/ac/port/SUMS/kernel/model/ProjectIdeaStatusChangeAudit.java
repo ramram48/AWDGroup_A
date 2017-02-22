@@ -5,8 +5,7 @@ import java.io.*;
 import javax.persistence.*;
 
 /**
-Domain Value Object.
-Composition of a ProjectIdea entity.
+Model layer Value Object, composition of a ProjectIdea entity.
 Represents an audit of a change made to a ProjectIdea entity's Status property,
 at a particular date–time, by a particular RegisteredUser.
 @author Reciprocal

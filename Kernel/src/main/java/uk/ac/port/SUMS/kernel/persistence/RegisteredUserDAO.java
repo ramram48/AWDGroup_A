@@ -4,6 +4,12 @@ import javax.persistence.*;
 import uk.ac.port.SUMS.kernel.model.*;
 import uk.ac.port.SUMS.kernel.persistence.exceptions.*;
 
+/**
+DAO/Facade for RegisteredUser entities and their derivations.
+Placeholder for testing; edit/replace with the actual DAO class
+as implemented by the Project Registration subsystem
+@author Reciprocal
+*/
 @Stateless
 public class RegisteredUserDAO extends AbstractFacade<RegisteredUser>{
  @PersistenceContext(unitName="uk.ac.port.SUMS.kernel.PU")

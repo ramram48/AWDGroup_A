@@ -3,11 +3,14 @@ import java.io.*;
 import javax.persistence.*;
 
 /**
-Domain Entity.
-???
-Identified by ???
-A RegisteredUser is one of three mutually exclusive types — 
-StaffUser, StudentUser, or ExternalUser.
+Model layer Entity.
+Placeholder for testing; edit or replace with the actual implemented entity, from the Project Registration subsystem
+
+A RegisteredUser is one of three mutually exclusive types—
+Staff, Student, or External
+A Staff RegisteredUser can additionally be any combination of the following types—
+Coordinator, and Administrator
+There may be more than one Administrator
 */
 @Entity @Access(AccessType.FIELD)
 abstract public class RegisteredUser implements Serializable{
@@ -36,9 +39,6 @@ abstract public class RegisteredUser implements Serializable{
   return Organisation;
  }
  
- /**
- @author Reciprocal
- */
  abstract protected Types getType();
  /**
  @author Reciprocal
@@ -97,8 +97,5 @@ abstract public class RegisteredUser implements Serializable{
  
  static protected final String LocalOrganisation="University of Portsmouth";
  
- /**
- @author Reciprocal
- */
  public static enum Types{Staff,Student,External}
 }

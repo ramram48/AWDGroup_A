@@ -1,6 +1,7 @@
 package uk.ac.port.SUMS.ProjectIdeas.application;
 import javax.ejb.*;
 import uk.ac.port.SUMS.kernel.model.*;
+import uk.ac.port.SUMS.kernel.model.exceptions.*;
 import uk.ac.port.SUMS.kernel.persistence.*;
 import uk.ac.port.SUMS.kernel.persistence.exceptions.*;
 
@@ -14,11 +15,11 @@ public class ViewProjectIdea{
  private ProjectIdeaDAO DAO;
  public ViewProjectIdea(){}
  
- public ProjectIdea Execute(String ProjectIdeaID,RegisteredUser ViewedBy)throws NoEntityFoundException{
+ public ProjectIdea Execute(String ProjectIdeaID,RegisteredUser ViewedBy)throws NoEntityFoundException,NotAuthorizedException{
   //TODO Any other error handling
   ProjectIdea Model=DAO.Read(ProjectIdeaID);
   if(!Model.canView(ViewedBy)){
-   //TODO Error handling
+   throw new NotAuthorizedException();
   }
   return Model;
  }

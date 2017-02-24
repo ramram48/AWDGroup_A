@@ -26,9 +26,9 @@ public class ProjectCategoryDAO extends AbstractFacade<ProjectCategory>{
  }
  
  public boolean Exists(ProjectCategory Check){
-  TypedQuery<Boolean> ExistsQuery=getEntityManager().createNamedQuery("ProjectCategory.Exists",Boolean.class);
+  TypedQuery<Integer> ExistsQuery=getEntityManager().createNamedQuery("ProjectCategory.Exists",Integer.class);
   ExistsQuery.setParameter("CategoryName",Check.getName());
-  return ExistsQuery.getSingleResult();
+  return ExistsQuery.getSingleResult()!=0;
  }
  
  public @Override void Create(ProjectCategory ToCreate){

@@ -12,6 +12,9 @@ that a ProjectIdea can be associated with.
 @author Reciprocal
 */
 @Entity @Access(AccessType.FIELD)
+@NamedQuery(name="ProjectCategory.Exists",query=
+ "SELECT CASE when EXISTS(SELECT \"Name\" from ProjectCategory where \"Name\"=:CategoryName) then true else false end"
+)
 public class ProjectCategory implements Serializable{
  @Id
  private String Name;

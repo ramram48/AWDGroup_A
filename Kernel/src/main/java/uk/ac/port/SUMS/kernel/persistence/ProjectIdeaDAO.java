@@ -1,8 +1,8 @@
 package uk.ac.port.SUMS.kernel.persistence;
 import javax.persistence.*;
 import javax.ejb.*;
-import uk.ac.port.SUMS.kernel.persistence.exceptions.*;
 import uk.ac.port.SUMS.kernel.model.*;
+import uk.ac.port.SUMS.kernel.model.exceptions.*;
 
 /**
 DAO/Facade class for reading and writing ProjectIdea entities,
@@ -26,7 +26,17 @@ public class ProjectIdeaDAO extends AbstractFacade<ProjectIdea>{
   return super.Read(Title);
  }
  
+ public boolean Exists(String Title){
+  TypedQuery<Boolean> ExistsQuery=getEntityManager().createNamedQuery("ProjectIdea.Exists",Boolean.class);
+  ExistsQuery.setParameter("Title",Title);
+  return ExistsQuery.getSingleResult();
+ }
+ 
  public @Override void Create(ProjectIdea ToCreate){
   super.Create(ToCreate);
+ }
+ 
+ public @Override ProjectIdea Update(ProjectIdea ToUpdate){
+  return super.Update(ToUpdate);
  }
 }

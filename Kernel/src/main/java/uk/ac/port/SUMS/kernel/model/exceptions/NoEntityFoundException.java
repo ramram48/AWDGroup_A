@@ -1,4 +1,4 @@
-package uk.ac.port.SUMS.kernel.persistence.exceptions;
+package uk.ac.port.SUMS.kernel.model.exceptions;
 import javax.ejb.*;
 
 /**

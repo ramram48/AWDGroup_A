@@ -18,6 +18,10 @@ it has a Status, defining whether it has been approved as a prospective Project 
 @author Reciprocal
 */
 @Entity @Access(AccessType.FIELD)
+//Would ideally place this on the persistence layer ProjectIdea DAO
+@NamedQuery(name="ProjectIdea.Exists",query=
+ "SELECT CASE when EXISTS(SELECT Title from ProjectIdea where Title=:Title) then true else false end"
+)
 public class ProjectIdea implements Serializable{
  @Id
  private String Title;
@@ -38,9 +42,13 @@ public class ProjectIdea implements Serializable{
  private String AimsAndObjectives="";
  @Column(nullable=false)//edited by ramazan
  private String AcademicQuestion=""; // edited by pat
- //TODO Will all Students have an associated StudentUser entity
+ @Column(nullable=false)
+ private String IntendedFor="";
+ /*
+//TODO Will all Students have an associated StudentUser entity
  @ManyToMany(fetch=FetchType.EAGER)
  private Set<StudentUser> IntendedFor=Collections.EMPTY_SET;
+ */
  //Use explicit order column to avoid dependency on system clock
  @ElementCollection(fetch=FetchType.LAZY) /*@OrderBy("when DESC")*/ @OrderColumn(name="ChangeOrder",nullable=false)
  private List<ProjectIdeaStatusChangeAudit> StatusChanges;
@@ -123,21 +131,31 @@ public class ProjectIdea implements Serializable{
  }
  
  /**
+ The listing of Students that this ProjectIdea is aimed at;
+ usually this is blank, indicating it is open to be allocated to any Student.
+ */
+ public String getIntendedFor(){
+  return IntendedFor;
+ }
+ public void setIntendedFor(String IntendedFor){
+  if(IntendedFor==null){IntendedFor="";}
+  this.IntendedFor=IntendedFor;
+ }
+ //TODO Enhance IntendedFor property from a simple string back to a set of Students
+ /*
  The set of Students that this ProjectIdea is aimed at;
  usually this is empty, indicating it is open to be allocated to any Student.
- */
  public Set<StudentUser> getIntendedFor(){
   return IntendedFor;
  }
  public void setIntendedFor(Set<StudentUser> IntendedFor){
   this.IntendedFor=IntendedFor;
  }
- /**
  If this is false, IntendedFor will detail the particular Students that this ProjectIdea is aimed at.
- */
  public boolean isIntendedForEveryone(){
   return IntendedFor.isEmpty();
  }
+ */
 
  //TODO Reverse order
  /**
@@ -167,6 +185,13 @@ public class ProjectIdea implements Serializable{
  */
  public boolean canViewStatusChanges(RegisteredUser User){
   return User.equals(this.getOwner()) || User.isStaff()
+  || User.isAdministrator();
+ }
+ /**
+ @return true if the supplied user may change a new or existing ProjectIdea's Status, otherwise false
+ */
+ public boolean canChangeStatus(RegisteredUser User){
+  return User.isStaff()
   || User.isAdministrator();
  }
  

@@ -2,7 +2,7 @@ package uk.ac.port.SUMS.kernel.persistence;
 import java.util.*;
 import javax.persistence.*;
 import javax.persistence.criteria.*;
-import uk.ac.port.SUMS.kernel.persistence.exceptions.*;
+import uk.ac.port.SUMS.kernel.model.exceptions.*;
 
 /**
 Persistence layer convenience base class for DAO/Facade classes,
@@ -10,7 +10,7 @@ providing template implementations for the basic four data operations.
 @param <T> Entity class that derived DAO classes will operate on
 @author Reciprocal
 */
-abstract class AbstractFacade<T>{
+abstract public class AbstractFacade<T>{
  private final Class<T> entityClass;
  protected AbstractFacade(Class<T> entityClass){
   this.entityClass=entityClass;
@@ -22,6 +22,7 @@ abstract class AbstractFacade<T>{
   getEntityManager().persist(entity);
  }
 
+ //TODO Concurrency
  protected T Update(T entity){
   return getEntityManager().merge(entity);
  }

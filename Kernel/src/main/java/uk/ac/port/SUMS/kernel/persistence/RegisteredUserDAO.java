@@ -1,8 +1,8 @@
 package uk.ac.port.SUMS.kernel.persistence;
+import uk.ac.port.SUMS.kernel.model.exceptions.NoEntityFoundException;
 import javax.ejb.*;
 import javax.persistence.*;
 import uk.ac.port.SUMS.kernel.model.*;
-import uk.ac.port.SUMS.kernel.persistence.exceptions.*;
 
 /**
 DAO/Facade for RegisteredUser entities and their derivations.

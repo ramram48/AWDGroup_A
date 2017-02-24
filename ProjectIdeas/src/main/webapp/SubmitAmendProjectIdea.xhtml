@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html
+ xmlns="http://www.w3.org/1999/xhtml"
+ xmlns:h="http://xmlns.jcp.org/jsf/html"
+ xmlns:f="http://xmlns.jcp.org/jsf/core"
+ xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+>
+ <f:metadata>
+  <f:viewParam name="title" value="#{SAI.title}"/>
+  <f:viewAction action="#{SAI.LoadModel}"/>
+ </f:metadata>
+ <h:head>
+  <c:if test="#{!SAI.amending}">
+   <title>SUMS — Submit Project Idea</title>
+  </c:if>
+  <c:if test="#{SAI.amending}">
+   <title>SUMS — Amend Project Idea</title>
+  </c:if>
+  <meta name="language" content="en-GB"/>
+ </h:head>
+ <h:body>
+  
+  <h:messages globalOnly="true" showSummary="false" showDetail="true"/>
+  <h:panelGroup layout="block" rendered="#{!SAI.loadFailure}">
+   
+   <c:if test="#{!SAI.amending}">
+    <h1>Submit a new Project Idea</h1>
+   </c:if>
+   <c:if test="#{SAI.amending}">
+    <h1><h:outputFormat value="Amend Project Idea: {0}">
+      <f:param value="#{SAI.model.title}"/>
+    </h:outputFormat></h1>
+    <!--
+    <p><h:outputFormat value="Submission Date: {0,date,medium}">
+     <Date will be interpreted according to the host system's timezone>
+     <f:param value="#{SAI.model.submissionDate.time}"/>
+    </h:outputFormat></p>
+    -->
+   </c:if>
+   
+   <h:form>
+   
+    <h:panelGrid columns="2">
+     <h:outputLabel value="Categories:" for="Categories"/>
+     <h:selectManyCheckbox id="Categories" value="#{SAI.model.categories}">
+      <f:selectItems
+       value="#{SAI.availableCategories}" var="Category"
+       itemLabel="Category.name"
+      />
+     </h:selectManyCheckbox>
+
+     <h:outputLabel value="Intended for:" for="IntendedFor"/>
+     <h:inputText id="IntendedFor" value="#{SAI.model.intendedFor}"/>
+
+     <h:outputLabel value="Status:" for="Status"/>
+     <h:selectOneMenu id="Status" value="#{SAI.model.status}" disabled="#{!SAI.userCanChangeStatus}">
+      <f:selectItems value="#{SAI.projectIdeaStatuses}"/>
+     </h:selectOneMenu>
+     
+     <h:outputLabel value="Academic Question" for="AcademicQuestion"/>
+     <h:inputTextarea id="AcademicQuestion" value="#{SAI.model.academicQuestion}"/>
+
+     <h:outputLabel value="Description" for="Description"/>
+     <h:inputTextarea id="Description" value="#{SAI.model.description}"/>
+
+     <h:outputLabel value="Aims &amp; Objectives" for="AimsAndObjectives"/>
+     <h:inputTextarea id="AimsAndObjectives" value="#{SAI.model.aimsAndObjectives}"/>
+     
+     <!--TODO Reassign Owner for Administrators-->
+    </h:panelGrid>
+    
+   </form>
+  </h:panelGroup>
+  
+ </h:body>
+</html>

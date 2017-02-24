@@ -1,26 +1,19 @@
 package uk.ac.port.SUMS.ProjectIdeas.presentation;
+import uk.ac.port.SUMS.kernel.model.exceptions.NoEntityFoundException;
 import java.text.*;
-import javax.ejb.*;
-import javax.inject.*;
-import javax.enterprise.context.*;
 import javax.faces.application.*;
 import javax.faces.context.*;
 import uk.ac.port.SUMS.kernel.infrastructure.*;
 import uk.ac.port.SUMS.kernel.presentation.*;
-import uk.ac.port.SUMS.kernel.persistence.exceptions.*;
 import uk.ac.port.SUMS.kernel.model.*;
-import uk.ac.port.SUMS.ProjectIdeas.application.*;
 import uk.ac.port.SUMS.kernel.model.exceptions.*;
 
-@Named(value="I")
-@RequestScoped
-public class ProjectIdeaController extends AuthenticatedController{
+abstract public class ProjectIdeaControllerBase extends AuthenticatedController{
  private String Title=null;
- private ProjectIdea Model=null;
- @EJB
- private ViewProjectIdea Application;
- private final StringSanitizer StringSanitizerService=new StringSanitizer();
- public ProjectIdeaController(){}
+ protected ProjectIdea Model=null;
+ private boolean loadsuccess=false;
+ protected final StringSanitizer StringSanitizerService=new StringSanitizer();
+ protected ProjectIdeaControllerBase(){}
  
  public String getTitle(){
   return Title;
@@ -28,29 +21,23 @@ public class ProjectIdeaController extends AuthenticatedController{
  public void setTitle(String Title){
   this.Title=StringSanitizerService.ProcessLine(Title);
  }
- public boolean getSuccess(){
-  return this.Model!=null;
+ public boolean isTitleSpecified(){
+  return !(this.Title==null||this.Title.isEmpty());
+ }
+ public boolean getLoadSuccess(){
+  return loadsuccess;
  }
  public ProjectIdea getModel(){
   return this.Model;
  }
  
- public boolean getCanNavigateToAmendIdea(){
-  return Model.canEdit(getCurrentUser());
- }
- public boolean getCanNavigateToStatusChanges(){
-  return Model.canViewStatusChanges(getCurrentUser());
- }
- 
  public void LoadModel(){
-  if(this.Title==null||this.Title.isEmpty()){
-   //TODO Test
-   super.Redirect("ProjectIdeas.xhtml");
+  if(!isTitleSpecified()){
    return;
   }
   ProjectIdea Model;
   try{
-   Model=Application.Execute(Title,getCurrentUser());
+   Model=ReadModel();
   }catch(NoEntityFoundException Error){
    super.setHTTPStatusCode(404);
    FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(
@@ -64,10 +51,13 @@ public class ProjectIdeaController extends AuthenticatedController{
    FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(
     FacesMessage.SEVERITY_ERROR,
     "Access Denied",
-    MessageFormat.format("The currently logged in user ({0}) is not authorized to view this Project Idea",getCurrentUser().getID())
+    MessageFormat.format("The currently logged in user ({0}) is not authorized to view or edit this Project Idea",getCurrentUser().getID())
    ));
    return;
   }
   this.Model=Model;
+  this.loadsuccess=true;
  }
+ 
+ abstract protected ProjectIdea ReadModel()throws NoEntityFoundException,NotAuthorizedException;
 }

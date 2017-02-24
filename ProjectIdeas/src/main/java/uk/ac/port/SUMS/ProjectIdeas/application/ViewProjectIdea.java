@@ -1,9 +1,9 @@
 package uk.ac.port.SUMS.ProjectIdeas.application;
+import uk.ac.port.SUMS.kernel.model.exceptions.NoEntityFoundException;
 import javax.ejb.*;
 import uk.ac.port.SUMS.kernel.model.*;
 import uk.ac.port.SUMS.kernel.model.exceptions.*;
 import uk.ac.port.SUMS.kernel.persistence.*;
-import uk.ac.port.SUMS.kernel.persistence.exceptions.*;
 
 /**
 Application layer EJB for retrieving an individual ProjectIdea model
@@ -15,6 +15,7 @@ public class ViewProjectIdea{
  private ProjectIdeaDAO DAO;
  public ViewProjectIdea(){}
  
+ //Could not distinguish between no entity found and not authorized for extra security, but this may be overdoing things
  public ProjectIdea Execute(String ProjectIdeaID,RegisteredUser ViewedBy)throws NoEntityFoundException,NotAuthorizedException{
   //TODO Any other error handling
   ProjectIdea Model=DAO.Read(ProjectIdeaID);

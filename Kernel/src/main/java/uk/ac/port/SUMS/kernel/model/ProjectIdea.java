@@ -20,7 +20,7 @@ it has a Status, defining whether it has been approved as a prospective Project 
 @Entity @Access(AccessType.FIELD)
 //Would ideally place this on the persistence layer ProjectIdea DAO
 @NamedQuery(name="ProjectIdea.Exists",query=
- "SELECT CASE when EXISTS(SELECT Title from ProjectIdea where Title=:Title) then true else false end"
+ "SELECT CASE when COUNT(PI.Title)>0 then true else false end from ProjectIdea PI where PI.Title=:Title"
 )
 public class ProjectIdea implements Serializable{
  @Id
@@ -45,7 +45,7 @@ public class ProjectIdea implements Serializable{
  @Column(nullable=false)
  private String IntendedFor="";
  /*
-//TODO Will all Students have an associated StudentUser entity
+ //TODO Will all Students have an associated StudentUser entity
  @ManyToMany(fetch=FetchType.EAGER)
  private Set<StudentUser> IntendedFor=Collections.EMPTY_SET;
  */

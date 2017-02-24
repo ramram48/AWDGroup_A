@@ -13,7 +13,7 @@ that a ProjectIdea can be associated with.
 */
 @Entity @Access(AccessType.FIELD)
 @NamedQuery(name="ProjectCategory.Exists",query=
- "SELECT CASE when EXISTS(SELECT \"Name\" from ProjectCategory where \"Name\"=:CategoryName) then true else false end"
+ "SELECT CASE when COUNT(C.Name)>0 then true else false end from ProjectCategory C where C.Name=:CategoryName"
 )
 public class ProjectCategory implements Serializable{
  @Id

@@ -27,9 +27,9 @@ public class ProjectIdeaDAO extends AbstractFacade<ProjectIdea>{
  }
  
  public boolean Exists(String Title){
-  TypedQuery<Boolean> ExistsQuery=getEntityManager().createNamedQuery("ProjectIdea.Exists",Boolean.class);
+  TypedQuery<Integer> ExistsQuery=getEntityManager().createNamedQuery("ProjectIdea.Exists",Integer.class);
   ExistsQuery.setParameter("Title",Title);
-  return ExistsQuery.getSingleResult();
+  return ExistsQuery.getSingleResult()!=0;
  }
  
  public @Override void Create(ProjectIdea ToCreate){

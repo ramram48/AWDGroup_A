@@ -6,10 +6,10 @@ import javax.validation.constraints.*;
 @NotNull
 @Size(min=1)
 @ReportAsSingleViolation
-
 @Target({ElementType.METHOD,ElementType.FIELD,ElementType.ANNOTATION_TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
+@Constraint(validatedBy={})
 public @interface NotEmpty{
  String message() default "Supply a non-empty value";
  Class<?>[] groups() default {};

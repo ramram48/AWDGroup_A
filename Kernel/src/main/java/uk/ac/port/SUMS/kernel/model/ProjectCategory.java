@@ -1,5 +1,4 @@
 package uk.ac.port.SUMS.kernel.model;
-import java.io.*;
 import javax.persistence.*;
 
 /**
@@ -15,7 +14,7 @@ that a ProjectIdea can be associated with.
 @NamedQuery(name="ProjectCategory.Exists",query=
  "SELECT CASE when COUNT(C.Name)>0 then true else false end from ProjectCategory C where C.Name=:CategoryName"
 )
-public class ProjectCategory implements Serializable{
+public class ProjectCategory implements java.io.Serializable{
  @Id
  private String Name;
  public ProjectCategory(String Name){

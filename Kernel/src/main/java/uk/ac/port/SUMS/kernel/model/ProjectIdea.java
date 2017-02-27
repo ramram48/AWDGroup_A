@@ -1,12 +1,11 @@
 package uk.ac.port.SUMS.kernel.model;
 import java.util.*;
-import java.io.*;
 import java.text.*;
 import java.time.*;
 import java.util.logging.*;
-import javax.inject.*;
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import uk.ac.port.SUMS.kernel.infrastructure.*;
 import uk.ac.port.SUMS.kernel.infrastructure.constraints.*;
 
 /**
@@ -22,7 +21,7 @@ it has a Status, defining whether it has been approved as a prospective Project 
 @NamedQuery(name="ProjectIdea.Exists",query=
  "SELECT CASE when COUNT(PI.Title)>0 then true else false end from ProjectIdea PI where PI.Title=:Title"
 )
-public class ProjectIdea implements Serializable{
+public class ProjectIdea implements java.io.Serializable{
  @Id
  private String Title;
  @ManyToOne(fetch=FetchType.EAGER,optional=false)
@@ -53,7 +52,9 @@ public class ProjectIdea implements Serializable{
  @ElementCollection(fetch=FetchType.LAZY) /*@OrderBy("when DESC")*/ @OrderColumn(name="ChangeOrder",nullable=false)
  private List<ProjectIdeaStatusChangeAudit> StatusChanges;
  @Transient
- private Logger Log=Logger.getLogger(this.getClass().getPackage().getName());
+ protected final StringSanitizer StringSanitizerService=new StringSanitizer();
+ @Transient
+ protected final Logger Log=Logger.getLogger(this.getClass().getPackage().getName());
  
  public ProjectIdea(){}
 
@@ -66,6 +67,8 @@ public class ProjectIdea implements Serializable{
  changing existing ProjectIdea entities will have undefined effects.
  */
  public void setTitle(String Title){
+  //Design issue — Must remember to use StringSanitizer in all relevant places; could use special data type but this adds complexity
+  Title=StringSanitizerService.ProcessLine(Title);
   Log.info(MessageFormat.format("Changing ProjectIdea Title from {0} to {1}",this.Title,Title));
   this.Title=Title;
  }
@@ -110,6 +113,7 @@ public class ProjectIdea implements Serializable{
   return Description;
  }
  public void setDescription(String Description){
+  Description=StringSanitizerService.ProcessParagraph(Description);
   if(Description==null){Description="";}
   this.Description=Description;
  }
@@ -119,6 +123,7 @@ public class ProjectIdea implements Serializable{
   return AimsAndObjectives;
  }
  public void setAimsAndObjectives(String AimsAndObjectives){
+  AimsAndObjectives=StringSanitizerService.ProcessParagraph(AimsAndObjectives);
   this.AimsAndObjectives=AimsAndObjectives;
  }
  
@@ -127,6 +132,7 @@ public class ProjectIdea implements Serializable{
   return AcademicQuestion;
  }
  public void setAcademicQuestion(String AcademicQuestion){
+  AcademicQuestion=StringSanitizerService.ProcessParagraph(AcademicQuestion);
   this.AcademicQuestion=AcademicQuestion;
  }
  
@@ -138,6 +144,7 @@ public class ProjectIdea implements Serializable{
   return IntendedFor;
  }
  public void setIntendedFor(String IntendedFor){
+  IntendedFor=StringSanitizerService.ProcessLine(IntendedFor);
   if(IntendedFor==null){IntendedFor="";}
   this.IntendedFor=IntendedFor;
  }

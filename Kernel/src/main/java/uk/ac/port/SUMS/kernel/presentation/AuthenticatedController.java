@@ -11,16 +11,36 @@ Base class for Controllers (JSF Backing Beans) that provides information
 about the currently logged in user.
 Placeholder for testing; edit/replace with solution used by Project Registration module
 */
-abstract public class AuthenticatedController{
+abstract public class AuthenticatedController implements java.io.Serializable{
  @Inject
- private Logger Log;
+ private transient Logger Log;
+ 
+ private void readObject(java.io.ObjectInputStream in)throws java.io.IOException,java.lang.ClassNotFoundException{
+  in.defaultReadObject();
+  this.Log=Logger.getLogger(this.getClass().getPackage().getName());
+ }
  
  public RegisteredUser getCurrentUser(){
   
   //TODO
   
+  //return new StudentUser("T");
   return StaffUser.Administrator("Q");
   
+ }
+ 
+ /**
+ Convenience base class method for determining if the current request is a "Post-Back" request,
+ a term also used in the ASP.NET framework.
+ @return true if the current request is a "Post-Back", otherwise false
+ @author Reciprocal
+ */
+ public boolean isPostBack(){
+  try{
+   return FacesContext.getCurrentInstance().isPostback();
+  }catch(UnsupportedOperationException Error){
+   return false;
+  }
  }
  
  /**
@@ -33,11 +53,11 @@ abstract public class AuthenticatedController{
   FacesContext RequestContext=FacesContext.getCurrentInstance();
   ExternalContext _RequestContext=RequestContext.getExternalContext();
   try{
-   _RequestContext.redirect(_RequestContext.encodeActionURL(_RequestContext.getRequestContextPath()+To));
+   _RequestContext.redirect(_RequestContext.getRequestContextPath()+"/"+_RequestContext.encodeResourceURL(To));
   }catch(IOException Error){
+   RequestContext.responseComplete();
    Log.log(Level.WARNING,MessageFormat.format("IO error redirecting to \"{0}\"",To),Error);
   }
-  RequestContext.responseComplete();
  }
  
  /**

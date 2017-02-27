@@ -1,5 +1,7 @@
 package uk.ac.port.SUMS.kernel.model;
 import javax.persistence.*;
+import uk.ac.port.SUMS.kernel.infrastructure.*;
+import uk.ac.port.SUMS.kernel.infrastructure.constraints.*;
 
 /**
 Model layer Entity.
@@ -17,16 +19,26 @@ that a ProjectIdea can be associated with.
 public class ProjectCategory implements java.io.Serializable{
  @Id
  private String Name;
+ //transient is fine as long as this is only used in the constructor; otherwise should recreate upon deserialization
+ private final transient StringSanitizer StringSanitizerService=new StringSanitizer();
  public ProjectCategory(String Name){
-  this.Name=Name;
+  this.Name=StringSanitizerService.ProcessLine(Name);
  }
  //For JPA
  private ProjectCategory(){}
 
+ @NotEmpty
  public String getName(){
   return Name;
  }
 
+ public boolean canCreate(RegisteredUser User){
+  return User.isAdministrator();
+ }
+ public boolean canDelete(RegisteredUser User){
+  return User.isAdministrator();
+ }
+ 
  public @Override int hashCode(){
   return Name.hashCode();
  }

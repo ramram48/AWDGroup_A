@@ -23,11 +23,11 @@ abstract public class AbstractFacade<T>{
  }
 
  //TODO Concurrency
- protected T Update(T entity){
+ protected T UpdateInternal(T entity){
   return getEntityManager().merge(entity);
  }
 
- protected void Delete(T entity){
+ protected void DeleteInternal(T entity){
   getEntityManager().remove(getEntityManager().merge(entity));
  }
 

@@ -34,6 +34,15 @@ public class ProjectIdea implements java.io.Serializable{
  private Statuses Status=Statuses.Provisional;
  //TODO Readonly-ness of collections
  @ManyToMany(fetch=FetchType.EAGER)
+ //@JoinTable(inverseJoinColumns={@JoinColumn(foreignKey=@ForeignKey(foreignKeyDefinition="FOREIGN KEY (CATEGORIES_NAME) references PROJECTCATEGORY(\"NAME\") on delete cascade"))})
+ @JoinTable(inverseForeignKey=@ForeignKey(
+  name="FK_PROJECTCATEGORY",
+  foreignKeyDefinition="FOREIGN KEY (CATEGORIES_NAME) references PROJECTCATEGORY(\"NAME\") on delete cascade"
+ ),foreignKey=@ForeignKey(
+  //Possible bug; setting inverse foreign key removes the other foreign key
+  name="FK_PROJECTIDEA",
+  foreignKeyDefinition="FOREIGN KEY (PROJECTIDEA_TITLE) references PROJECTIDEA(TITLE)"
+ ))
  private Set<ProjectCategory> Categories=Collections.EMPTY_SET;
  @Column(nullable=false)
  private String Description="";

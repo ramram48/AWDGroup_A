@@ -44,9 +44,9 @@ abstract public class AuthenticatedController implements java.io.Serializable{
  }
  
  /**
- Convenience base class method for redirecting a request to a different page.
+ Convenience base class method for redirecting a request to a different page/resource.
  The JSF request cycle will be aborted after calling this method.
- @param To The JSF page to redirect to, as would be returned by a backing bean application method
+ @param To Relative URL of the resource to redirect to, relative to the web application's root
  @author Reciprocal
  */
  protected void Redirect(String To){

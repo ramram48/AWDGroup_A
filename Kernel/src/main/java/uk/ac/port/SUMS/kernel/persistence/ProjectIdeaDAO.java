@@ -32,11 +32,11 @@ public class ProjectIdeaDAO extends AbstractFacade<ProjectIdea>{
   return ExistsQuery.getSingleResult()!=0;
  }
  
- public @Override void Create(ProjectIdea ToCreate){
+ public void Create(ProjectIdea ToCreate){
   super.Create(ToCreate);
  }
  
- public @Override ProjectIdea Update(ProjectIdea ToUpdate){
-  return super.Update(ToUpdate);
+ public ProjectIdea Update(ProjectIdea ToUpdate)throws ConcurrencyException{
+  return super.UpdateInternal(ToUpdate);
  }
 }

@@ -1,5 +1,5 @@
 package uk.ac.port.SUMS.ProjectIdeas.presentation;
-import uk.ac.port.SUMS.kernel.model.exceptions.NoEntityFoundException;
+import java.io.*;
 import java.text.*;
 import javax.faces.application.*;
 import javax.faces.context.*;
@@ -8,33 +8,41 @@ import uk.ac.port.SUMS.kernel.presentation.*;
 import uk.ac.port.SUMS.kernel.model.*;
 import uk.ac.port.SUMS.kernel.model.exceptions.*;
 
-abstract public class ProjectIdeaControllerBase extends AuthenticatedController{
+abstract public class ProjectIdeaControllerBase extends AuthenticatedController implements Serializable{
  private String Title=null;
  protected ProjectIdea Model=null;
- private boolean loadsuccess=false;
  protected final StringSanitizer StringSanitizerService=new StringSanitizer();
  protected ProjectIdeaControllerBase(){}
  
+ /**
+ @return The title parameter supplied in the query string
+ */
  public String getTitle(){
   return Title;
  }
  public void setTitle(String Title){
   this.Title=StringSanitizerService.ProcessLine(Title);
  }
+ /**
+ Preconditions: The request is not a post-back
+ @return If the title parameter has been specified in the query string, and is not empty
+ */
  public boolean isTitleSpecified(){
+  if(super.isPostBack()){throw new IllegalStateException();}
   return !(this.Title==null||this.Title.isEmpty());
- }
- public boolean getLoadSuccess(){
-  return loadsuccess;
  }
  public ProjectIdea getModel(){
   return this.Model;
  }
  
- public void LoadModel(){
-  if(!isTitleSpecified()){
-   return;
-  }
+ /**
+ Attempts to load the ProjectIdea model specified by the title parameter in the query string,
+ creating an error message if there was a problem.
+ Preconditions: isTitleSpecified, the request is not a post-back
+ Postconditions: Model!=null on success, Model==null on failure (not idempotent)
+ */
+ protected void LoadModel(){
+  if(!isTitleSpecified()){throw new IllegalStateException();}
   ProjectIdea Model;
   try{
    Model=ReadModel();
@@ -56,8 +64,12 @@ abstract public class ProjectIdeaControllerBase extends AuthenticatedController{
    return;
   }
   this.Model=Model;
-  this.loadsuccess=true;
  }
  
+ /**
+ Called once by LoadModel; should retrieve and return the ProjectIdea
+ specified by the Title property, which will not be empty,
+ or throw an exception.
+ */
  abstract protected ProjectIdea ReadModel()throws NoEntityFoundException,NotAuthorizedException;
 }

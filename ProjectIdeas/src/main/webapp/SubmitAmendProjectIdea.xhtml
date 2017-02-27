@@ -39,38 +39,55 @@
     -->
    </c:if>
    
-   <h:form>
+   <h:form id="Main">
    
-    <h:panelGrid columns="2">
+    <h:panelGrid columns="3">
+     <h:outputLabel value="Title:" for="Title" rendered="#{!SAI.amending}"/>
+     <h:inputText id="Title" value="#{SAI.model.title}" rendered="#{!SAI.amending}"/>
+     <h:message for="Title" rendered="#{!SAI.amending}"/>
+     
      <h:outputLabel value="Categories:" for="Categories"/>
-     <h:selectManyCheckbox id="Categories" value="#{SAI.model.categories}">
+     <h:selectManyCheckbox id="Categories" value="#{SAI.selectedCategories}">
       <f:selectItems
        value="#{SAI.availableCategories}" var="Category"
-       itemLabel="Category.name"
+       itemLabel="#{Category.name}" itemValue="#{Category.name}"
       />
      </h:selectManyCheckbox>
+     <h:message for="Categories"/>
 
      <h:outputLabel value="Intended for:" for="IntendedFor"/>
      <h:inputText id="IntendedFor" value="#{SAI.model.intendedFor}"/>
+     <h:message for="IntendedFor"/>
 
-     <h:outputLabel value="Status:" for="Status"/>
-     <h:selectOneMenu id="Status" value="#{SAI.model.status}" disabled="#{!SAI.userCanChangeStatus}">
+     <h:outputLabel value="Status:" for="Status" rendered="#{SAI.userCanChangeStatus}"/>
+     <h:selectOneMenu id="Status" value="#{SAI.model.status}" rendered="#{SAI.userCanChangeStatus}">
       <f:selectItems value="#{SAI.projectIdeaStatuses}"/>
      </h:selectOneMenu>
+     <h:message for="Status" rendered="#{SAI.userCanChangeStatus}"/>
      
-     <h:outputLabel value="Academic Question" for="AcademicQuestion"/>
+     <h:outputLabel value="Academic Question:" for="AcademicQuestion"/>
      <h:inputTextarea id="AcademicQuestion" value="#{SAI.model.academicQuestion}"/>
+     <h:message for="AcademicQuestion"/>
 
-     <h:outputLabel value="Description" for="Description"/>
+     <h:outputLabel value="Description:" for="Description"/>
      <h:inputTextarea id="Description" value="#{SAI.model.description}"/>
+     <h:message for="Description"/>
 
-     <h:outputLabel value="Aims &amp; Objectives" for="AimsAndObjectives"/>
+     <h:outputLabel value="Aims &amp; Objectives:" for="AimsAndObjectives"/>
      <h:inputTextarea id="AimsAndObjectives" value="#{SAI.model.aimsAndObjectives}"/>
+     <h:message for="AimsAndObjectives"/>
      
      <!--TODO Reassign Owner for Administrators-->
     </h:panelGrid>
     
-   </form>
+    <c:if test="#{!SAI.amending}">
+     <h:commandButton type="submit" value="Submit Project Idea" action="#{SAI.SubmitProjectIdea}"/>
+    </c:if>
+    <c:if test="#{SAI.amending}">
+     <h:commandButton type="submit" value="Amend Project Idea" action="#{SAI.AmendProjectIdea}"/>
+    </c:if>
+    
+   </h:form>
   </h:panelGroup>
   
  </h:body>

@@ -20,7 +20,7 @@
  <h:body>
   
   <h:messages globalOnly="true" showSummary="false" showDetail="true"/>
-  <h:panelGroup layout="block" rendered="#{I.loadSuccess}">
+  <h:panelGroup layout="block" rendered="#{!I.loadFailure}">
    
    <h1><h:outputFormat value="Project Idea: {0}">
      <f:param value="#{I.model.title}"/>
@@ -42,7 +42,7 @@
    <h:panelGrid columns="2">
     <h:outputLabel value="Categories:" for="Categories"/>
     <h:outputText id="Categories" value="#{I.model.categories}">
-     <f:converter converterId="CommaSeparatedCollection"/>
+     <f:converter converterId="CategoryList"/>
     </h:outputText>
     
     <h:outputLabel value="Owner:" for="Owner"/>
@@ -58,17 +58,17 @@
     
     <h:outputLabel value="Intended for:" for="IntendedFor"/>
     <h:panelGroup>
-     <h:outputText value="#{I.model.intendedFor}"/>
+     <h:outputText id="IntendedFor" value="#{I.model.intendedFor}"/>
      <!--
-     <c:if test="#{I.model.intendedForEveryone}">
+     <c:if test="# {I.model.intendedForEveryone}">
       <h:outputText id="IntendedFor" value="Everyone"/>
      </c:if>
-     <c:if test="#{!I.model.intendedForEveryone}">
-      <h:dataTable id="IntendedFor" value="#{I.model.intendedFor}" var="For">
+     <c:if test="# {!I.model.intendedForEveryone}">
+      <h:dataTable id="IntendedFor" value="# {I.model.intendedFor}" var="For">
        <h:column>
         <h:outputFormat value="{0} ({1})">
-         <f:param value="#{For.fullName}"/>
-         <f:param value="#{For.ID}"/>
+         <f:param value="# {For.fullName}"/>
+         <f:param value="# {For.ID}"/>
         </h:outputFormat>
        </h:column>
       </h:dataTable>

@@ -125,7 +125,7 @@ public class SubmitAmendProjectIdeaController extends ProjectIdeaControllerBase{
     duplicate="A Project Idea with this Title already exists; specify a different Title",
     duplicate
    ));
-   return "";
+   return null;
   }
   return FacesContext.getCurrentInstance().getExternalContext().encodeRedirectURL(
    "ProjectIdea.xhtml?faces-redirect=true",
@@ -147,7 +147,7 @@ public class SubmitAmendProjectIdeaController extends ProjectIdeaControllerBase{
     "Modified By Other User",
     "This Project Idea has been concurrently modified, or possibly deleted, by another user; copy the changes made to an external application, and refresh the page without re-submitting any data"
    ));
-   return "";
+   return null;
   }catch(NotAuthorizedException Error){
    FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(
     FacesMessage.SEVERITY_ERROR,
@@ -155,7 +155,7 @@ public class SubmitAmendProjectIdeaController extends ProjectIdeaControllerBase{
     MessageFormat.format("The currently logged in user ({0}) is not authorized to amend this Project Idea",getCurrentUser().getID())
    ));
    super.Model=null;
-   return "";
+   return null;
   }
   //super.Redirect("ProjectIdea.xhtml?includeViewParams=true");
   return "ProjectIdea.xhtml?includeViewParams=true&faces-redirect=true";

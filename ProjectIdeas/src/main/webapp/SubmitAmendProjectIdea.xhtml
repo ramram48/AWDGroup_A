@@ -81,10 +81,10 @@
     </h:panelGrid>
     
     <c:if test="#{!SAI.amending}">
-     <h:commandButton type="submit" value="Submit Project Idea" action="#{SAI.SubmitProjectIdea}"/>
+     <h:commandButton value="Submit Project Idea" action="#{SAI.SubmitProjectIdea}"/>
     </c:if>
     <c:if test="#{SAI.amending}">
-     <h:commandButton type="submit" value="Amend Project Idea" action="#{SAI.AmendProjectIdea}"/>
+     <h:commandButton value="Amend Project Idea" action="#{SAI.AmendProjectIdea}"/>
     </c:if>
     
    </h:form>

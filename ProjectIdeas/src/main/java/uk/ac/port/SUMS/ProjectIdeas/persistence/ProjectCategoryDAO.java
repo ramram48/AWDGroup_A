@@ -3,6 +3,7 @@ import java.util.*;
 import javax.persistence.*;
 import javax.ejb.*;
 import uk.ac.port.SUMS.kernel.model.*;
+import uk.ac.port.SUMS.kernel.model.exceptions.*;
 import uk.ac.port.SUMS.kernel.persistence.*;
 
 /**
@@ -21,17 +22,20 @@ public class ProjectCategoryDAO extends AbstractFacade<ProjectCategory>{
   return em;
  }
 
- public @Override Set<ProjectCategory> ReadAll(){
+ public Set<ProjectCategory> ReadAll(){
   return new HashSet<>(super.ReadAll());
  }
  
- public boolean Exists(ProjectCategory Check){
+ public boolean Exists(String ProjectCategoryName){
   TypedQuery<Integer> ExistsQuery=getEntityManager().createNamedQuery("ProjectCategory.Exists",Integer.class);
-  ExistsQuery.setParameter("CategoryName",Check.getName());
+  ExistsQuery.setParameter("CategoryName",ProjectCategoryName);
   return ExistsQuery.getSingleResult()!=0;
  }
  
- public @Override void Create(ProjectCategory ToCreate){
+ public void Create(ProjectCategory ToCreate){
   super.Create(ToCreate);
+ }
+ public void Delete(ProjectCategory ToDelete)throws ConcurrencyException{
+  super.DeleteInternal(ToDelete);
  }
 }

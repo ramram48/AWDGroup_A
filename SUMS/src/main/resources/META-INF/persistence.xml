@@ -1,23 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
-  <persistence-unit name="k" transaction-type="JTA">
-    <jta-data-source>java:app/sums</jta-data-source>
-    <class>Entities.Student</class>
-    <class>Entities.Person</class>
-    <class>Entities.Project</class>
-    <class>Entities.Staff</class>
-    <class>Entities.Milestone</class>
-    <class>Entities.Feedback</class>
-    <class>Entities.Mark</class>
-    <class>Entities.TelephoneNumber</class>
-    <class>Entities.Addres</class>
-    <class>Entities.Mail</class>
-    <class>Entities.PersonStatus</class>
-    <class>Entities.Organazation</class>
-    <class>Entities.Course</class>
+  <persistence-unit name="uk.ac.port.SUMS.PU" transaction-type="JTA">
+    <jta-data-source>java:app/uk.ac.port.SUMS.DS</jta-data-source>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
-      <property name="javax.persistence.schema-generation.database.action" value="create"/>
+      <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+      <property name="javax.persistence.sql-load-script-source" value="META-INF/LoadSampleData.sql"/>
     </properties>
   </persistence-unit>
 </persistence>

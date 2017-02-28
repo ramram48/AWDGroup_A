@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<jpa:entity-mappings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:java="http://jcp.org/en/jsr/detail?id=270" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:jpa="http://java.sun.com/xml/ns/persistence/orm" pkg="Entities" v="2.6" thm="PMacColorScheme" persistenceUnitName="k" sm="false" xs="false" id="_14877917338181" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_2_1.xsd">
+<jpa:entity-mappings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:java="http://jcp.org/en/jsr/detail?id=270" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:jpa="http://java.sun.com/xml/ns/persistence/orm" pkg="Entities" v="2.6" thm="PMacColorScheme" persistenceUnitName="uk.ac.port.SUMS.PU" sm="false" xs="false" id="_14877917338181" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_2_1.xsd">
     <jpa:entity lbl-ref="_14877917999362" xre="false" compositePrimaryKeyClass="StudentPK" abs="false" class="Student" visibile="true" minimized="false" rootElement="_14877917338181" id="_1487791799871">
         <jpa:ts e="true"/>
         <jpa:hc e="true"/>

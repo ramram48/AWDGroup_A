@@ -11,7 +11,7 @@ import Sessions.AbstractFacade;
 @Named("milestone")
 public class MilestoneFacade extends AbstractFacade<Milestone> {
 
-    @PersistenceContext(unitName = "k")
+    @PersistenceContext(unitName = "uk.ac.port.SUMS.PU")
     private EntityManager em;
 
     @Override

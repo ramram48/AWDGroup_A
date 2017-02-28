@@ -11,7 +11,7 @@ import Sessions.AbstractFacade;
 @Named("project")
 public class ProjectFacade extends AbstractFacade<Project> {
 
-    @PersistenceContext(unitName = "k")
+    @PersistenceContext(unitName = "uk.ac.port.SUMS.PU")
     private EntityManager em;
 
     @Override

@@ -11,7 +11,7 @@ import Sessions.AbstractFacade;
 @Named("feedback")
 public class FeedbackFacade extends AbstractFacade<Feedback> {
 
-    @PersistenceContext(unitName = "k")
+    @PersistenceContext(unitName = "uk.ac.port.SUMS.PU")
     private EntityManager em;
 
     @Override

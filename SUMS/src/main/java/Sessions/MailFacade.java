@@ -17,7 +17,7 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class MailFacade extends AbstractFacade<Mail> {
 
-    @PersistenceContext(unitName = "k")
+    @PersistenceContext(unitName = "uk.ac.port.SUMS.PU")
     private EntityManager em;
 
     @Override

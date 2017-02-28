@@ -13,6 +13,9 @@ import uk.ac.port.SUMS.ProjectIdeas.application.*;
 import uk.ac.port.SUMS.kernel.model.*;
 import uk.ac.port.SUMS.kernel.model.exceptions.*;
 
+/**
+@author Reciprocal
+*/
 @RequestScoped @Named(value="MC") //Manage Categories
 public class ManageCategoriesController extends AuthenticatedController{
  @EJB

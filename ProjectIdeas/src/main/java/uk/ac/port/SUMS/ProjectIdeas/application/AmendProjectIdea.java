@@ -4,6 +4,9 @@ import javax.ejb.*;
 import uk.ac.port.SUMS.kernel.model.*;
 import uk.ac.port.SUMS.kernel.model.exceptions.*;
 
+/**
+@author Reciprocal
+*/
 @Stateless @TransactionAttribute(TransactionAttributeType.SUPPORTS)
 public class AmendProjectIdea extends SubmitAmendProjectIdea{
  public AmendProjectIdea(){}

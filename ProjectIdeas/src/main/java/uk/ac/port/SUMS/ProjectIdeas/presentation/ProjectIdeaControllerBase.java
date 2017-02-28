@@ -8,6 +8,9 @@ import uk.ac.port.SUMS.kernel.presentation.*;
 import uk.ac.port.SUMS.kernel.model.*;
 import uk.ac.port.SUMS.kernel.model.exceptions.*;
 
+/**
+@author Reciprocal
+*/
 abstract public class ProjectIdeaControllerBase extends AuthenticatedController implements Serializable{
  private String Title=null;
  protected ProjectIdea Model=null;

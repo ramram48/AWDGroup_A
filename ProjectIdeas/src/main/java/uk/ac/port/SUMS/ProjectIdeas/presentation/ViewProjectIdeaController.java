@@ -11,6 +11,9 @@ import uk.ac.port.SUMS.kernel.model.exceptions.*;
 Does not currently support post-backs,
 due to the preconditions on the can–navigate predicates
 */
+/**
+@author Reciprocal
+*/
 @RequestScoped @Named(value="I") //Idea
 public class ViewProjectIdeaController extends ProjectIdeaControllerBase{
  @EJB

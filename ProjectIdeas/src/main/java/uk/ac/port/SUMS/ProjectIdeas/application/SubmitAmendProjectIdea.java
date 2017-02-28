@@ -6,6 +6,9 @@ import uk.ac.port.SUMS.kernel.model.*;
 import uk.ac.port.SUMS.kernel.persistence.*;
 import uk.ac.port.SUMS.ProjectIdeas.persistence.*;
 
+/**
+@author Reciprocal
+*/
 abstract public class SubmitAmendProjectIdea{
  @EJB
  protected ProjectIdeaDAO DAO;

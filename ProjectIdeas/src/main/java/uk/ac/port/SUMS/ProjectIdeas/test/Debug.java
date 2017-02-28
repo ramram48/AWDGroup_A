@@ -6,6 +6,9 @@ import javax.enterprise.context.RequestScoped;
 import javax.faces.context.*;
 import javax.persistence.*;
 
+/**
+@author Reciprocal
+*/
 @RequestScoped @Named(value="Debug")
 public class Debug{
  @PersistenceContext(unitName="uk.ac.port.SUMS.kernel.PU")

@@ -11,6 +11,7 @@ import uk.ac.port.SUMS.kernel.presentation.converters.*;
 JSF Converter for converting a collection of ProjectCategory entities into a delimited list,
 delimiting entries with a comma-space by default.
 Conversion is one way only. Null values are skipped.
+@author Reciprocal
 */
 @FacesConverter(value="CategoryList")
 public class CategoryListConverter implements Converter{

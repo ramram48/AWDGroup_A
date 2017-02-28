@@ -11,6 +11,9 @@ import uk.ac.port.SUMS.kernel.model.*;
 import uk.ac.port.SUMS.kernel.model.exceptions.*;
 import uk.ac.port.SUMS.ProjectIdeas.application.*;
 
+/**
+@author Reciprocal
+*/
 @ViewScoped @Named(value="SAI") //Submit-Amend-Idea
 public class SubmitAmendProjectIdeaController extends ProjectIdeaControllerBase{
  @EJB

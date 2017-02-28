@@ -9,6 +9,7 @@ import uk.ac.port.SUMS.kernel.persistence.*;
 /**
 DAO/Facade class for reading and creating immutable ProjectCategory entities,
 from and to the underlying data store.
+@author Reciprocal
 */
 @Stateless
 public class ProjectCategoryDAO extends AbstractFacade<ProjectCategory>{

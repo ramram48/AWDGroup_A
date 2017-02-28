@@ -3,8 +3,10 @@ import java.util.*;
 import javax.ejb.*;
 import uk.ac.port.SUMS.ProjectIdeas.persistence.*;
 import uk.ac.port.SUMS.kernel.model.*;
-import uk.ac.port.SUMS.kernel.model.exceptions.*;
 
+/**
+@author Reciprocal
+*/
 @Stateless
 public class ViewCategories{
  @EJB

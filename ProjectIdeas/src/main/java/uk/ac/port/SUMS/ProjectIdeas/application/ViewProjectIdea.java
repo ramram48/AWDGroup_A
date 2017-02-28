@@ -8,6 +8,7 @@ import uk.ac.port.SUMS.kernel.persistence.*;
 /**
 Application layer EJB for retrieving an individual ProjectIdea model
 for the user to view.
+@author Reciprocal
 */
 @Stateless
 public class ViewProjectIdea{

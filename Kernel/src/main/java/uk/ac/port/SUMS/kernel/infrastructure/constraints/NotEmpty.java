@@ -3,6 +3,9 @@ import java.lang.annotation.*;
 import javax.validation.*;
 import javax.validation.constraints.*;
 
+/**
+@author Reciprocal
+*/
 @NotNull
 @Size(min=1)
 @ReportAsSingleViolation
